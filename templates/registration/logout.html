@@ -1,0 +1,10 @@
+{% extends 'registration/base.html' %}
+{% load bootstrap4 %}
+{%block content%}
+<div class="text-center mt-5">
+    <h4 >You have successfully logged out.</h4>
+    <p>
+        Click here to <a href="{% url 'login' %}">Login</a>
+    </p>
+</div>
+{% endblock %}
