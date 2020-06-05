@@ -13,19 +13,72 @@
     {% block styles %}
         {% bootstrap_css %}
         <link rel="stylesheet" href="{%static 'css/register.css'%}"  >
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Tangerine'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins'>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     {% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg header">
+        <a class="navbar-brand " id='name' href="{% url 'project:project_index'%}" >AwwardMe</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown link
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+    <!-- <nav class="navbar navbar-inverse header">
         <div class="container-fluid text-center">
           <div class="navbar-header" style="align-items: center;">
             <a class="navbar-brand " id='name' href="{% url 'login'%}" >AwwardMe</a>
           </div>
-
+          <div class="col-lg-6 col-md-6 form-inline float-right">
+              {% if user.is_authenticated%}
+              <ul style="list-style-type: none;">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle btn btn-default" data-toggle='dropdown' role="button" aria-expanded="false">{{user.username}}<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu" style="text-decoration: none;">
+                    <li>
+                      <a href="#">Home</a>
+                    </li>
+                    <li>
+                      <a href="#">Create Article</a>
+                    </li>
+                    <li>
+                      <a href="/accounts/password/change">Change Password</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <a href="#" class="logout">Logout</a>
+              {% else %}
+              <a href="#" class="login">Login</a>
+              {% endif %}
+            
+          </div>
         </div>
-    </nav>
+    </nav> -->
     <div class="text-center">
         {% if messages %}
             {% for message in messages%}

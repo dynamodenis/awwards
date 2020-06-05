@@ -1,5 +1,47 @@
+body{
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Poppins',serif;
+
+}
 #name{
-    font-family: 'Tangerine',serif;
-    font-size: 40px;
+    font-family: 'Poppins',serif;
+    font-size: 2rem;
     text-shadow: 4px 4px 4px #aaa;
+    transform: scale(1);
+}
+
+a{
+    text-decoration: none;
+}
+
+.header{
+    background-color: #60b4df;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+.header a{
+    color: rgb(248, 245, 245);
+}
+
+.login , .logout:hover{
+    background-color: white;
+    border-radius: 2rem;
+    border: 2px solid white;
+    padding: 0.1rem 1.0rem;
+    color: #60b4df;
+    text-transform: uppercase;
+}
+
+.logout , .login:hover{
+    background-color: transparent;
+    color: black;
+    border-radius: 2rem;
+    border: 2px solid white;
+    padding: 0.1rem 1.0rem;
+    text-transform: uppercase;
+
 }
