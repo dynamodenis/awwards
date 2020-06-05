@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
+    'register.apps.RegisterConfig',
     'project.apps.ProjectConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -125,3 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+LOGIN_REDIRECT_URL='project:index'
+LOGIN_URL='login'
