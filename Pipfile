@@ -8,6 +8,9 @@ verify_ssl = true
 [packages]
 django = "*"
 psycopg2 = "*"
+dj-database-url = "*"
+python-decouple = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.6"
