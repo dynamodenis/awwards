@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator,MinValueValidator
+from PIL import Image
 
 # Create your models here.
 class Project(models.Model):
@@ -8,10 +10,16 @@ class Project(models.Model):
     title=models.CharField(max_length=60)
     description=models.TextField()
     posted=models.DateTimeField(auto_now_add=True) 
-    usability=models.ManyToManyField(User, related_name='usability', blank=True)
-    design=models.ManyToManyField(User, related_name='design' , blank=True)
-    content=models.ManyToManyField(User, related_name='content' , blank=True)
-    
+
+    def save(self, *args, **kwargs):
+        super().save()
+        img=Image.open(self.image.path)
+        
+        if img.height>720 and img.width>720:
+            size=(720,720)
+            img.thumbnail(size)
+            img.save(self.image.path)
+        
     def __str__(self):
         return self.title
     
@@ -27,3 +35,32 @@ class Project(models.Model):
     def delete_project(cls,delete_id):
         Project.objects.filter(pk=delete_id).delete()
         
+        
+class Votes(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    project=models.ForeignKey(Project, on_delete=models.CASCADE)
+    usability=models.IntegerField(default=0, validators=[MaxValueValidator(10,message='Range acceptable is 0-10'), MinValueValidator(0)])
+    design=models.IntegerField(default=0, validators=[MaxValueValidator(10,message='Range acceptable is 0-10'), MinValueValidator(0)])
+    content=models.IntegerField(default=0, validators=[MaxValueValidator(10,message='Range acceptable is 0-10'), MinValueValidator(0)])
+    
+    
+class Profile(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    image=models.ImageField(upload_to='profile/', default='default.png')
+    bio=models.TextField()
+    contact=models.CharField(max_length=30)
+    location=models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.user.username
+    
+    def save(self,*args,**kwargs):
+        super().save()
+        
+        img=Image.open(self.image.path)
+        
+        if img.height>400 and img.width>400:
+            size=(400,400)
+            img.thumbnail(size)
+            img.save(self.image.path)
+            
