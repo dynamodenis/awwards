@@ -47,9 +47,10 @@ class Votes(models.Model):
 class Profile(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     image=models.ImageField(upload_to='profile/', default='default.png')
-    bio=models.TextField()
-    contact=models.CharField(max_length=30)
-    location=models.CharField(max_length=50)
+    bio=models.TextField(blank=True)
+    contact=models.CharField(max_length=30, blank=True)
+    location=models.CharField(max_length=50,  blank=True)
+    company=models.CharField(max_length=50, blank=True)
     
     def __str__(self):
         return self.user.username

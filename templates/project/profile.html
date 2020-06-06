@@ -25,10 +25,19 @@
                             <img src="{{user.profile.image.url}}" class="img-circle rounded-circle image-fluid" alt="..." style="width: 220px; height: 220px;">
                         </div>
                     
-                        <div class="col-lg-6 col-md-6 col-xs-12">
+                        <div class="col-lg-6 col-md-6 col-xs-12 mb-2" style="font-size: 0.8rem;">
                             <h2 class="card-title">{{user.username}}</h2>
                             <p class="card-text">Email Adress: {{user.email}}</p>
-                            {% if profile.bio%}
+                            {% if user.profile.company%}
+                            <p class="card-text">Location: {{user.profile.company}}</p>
+                            {%endif%} 
+                            {% if user.profile.location%}
+                            <p class="card-text">Location: {{user.profile.location}}</p>
+                            {%endif%} 
+                            {% if user.profile.contact%}
+                            <p class="card-text">Contact Me: {{user.profile.contact}}</p>
+                            {%endif%} 
+                            {% if user.profile.bio%}
                             <p class="card-text">About Me: {{user.profile.bio}}</p>
                             {%endif%} 
                 
