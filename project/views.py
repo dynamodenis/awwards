@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Project
 from .forms import PostProject,UpdateUser,UpdateProfile
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -33,4 +34,8 @@ def new_project(request):
         form=PostProject()
         
     return render(request,'project/new_project.html',{'form':form})
+
+def posted_by(request, user_id):
+    user=get_object_or_404(User,pk=user_id)
+    return render(request,'project/posted_by.html', {'user':user})
             
