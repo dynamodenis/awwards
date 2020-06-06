@@ -55,6 +55,11 @@
                     <div class="card" style="margin-left: 0px;">
                         <a href="#"><img src="{{image.image.url}}" class="card-img-top img-responsive index_image" id="image" alt="IMAGE" title="" style="height:50vh; width: 100%;" ></a>
                         <div class="card-body">
+                            <div class="card-body">
+                                <h5 class="card-title">{{image.title}}</h5>
+                                <p>By <a href="{% url 'project:posted_by' image.user.id%}">{{image.user.username}}</a><span class="float-right">From {{image.location}}</span></p>
+                                <div class="text-center"><a class="btn button text-center btn-block"  href="{{image.link}}">Visit Site</a></div>
+                            </div>
                         </div>  
                     </div>               
                 </div>
