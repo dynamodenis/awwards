@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project,Votes
+from .models import Project,Votes,Profile
 
 admin.site.site_header='AwwardMe Admin'
 admin.site.site_title='AwwardMe Admin Dashboard'
@@ -20,3 +20,4 @@ class ProjectInLine(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Project,ProjectInLine)
+admin.site.register(Profile)

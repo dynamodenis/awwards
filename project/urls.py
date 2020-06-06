@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 app_name='project'
 urlpatterns = [
     path('', views.index,name='project_index'),
+    path('user/profile/', views.profile,name='profile'),
 ]
 
 if settings.DEBUG:
