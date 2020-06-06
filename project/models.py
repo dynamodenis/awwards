@@ -6,9 +6,11 @@ from PIL import Image
 # Create your models here.
 class Project(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
-    image=models.ImageField(upload_to='project/', blank=True)
+    image=models.ImageField(upload_to='project/')
     title=models.CharField(max_length=60)
     description=models.TextField()
+    link=models.CharField(max_length=100)
+    location=models.CharField(max_length=30)
     posted=models.DateTimeField(auto_now_add=True) 
 
     def save(self, *args, **kwargs):

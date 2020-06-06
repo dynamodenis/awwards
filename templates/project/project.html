@@ -1,0 +1,18 @@
+{% extends 'project/base.html'%}
+{% load bootstrap4 %}
+{% load static %}
+{% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{%static 'css/register.css'%}"  >
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-mg-12 col-col-md-12 col-xs-12">
+            <img src="{{project.image.url}}" alt="" style="width: 40rem;">
+        </div>
+    </div>
+</div>
+{% endblock %}

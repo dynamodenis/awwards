@@ -1,15 +1,8 @@
-body{
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    font-family: 'Poppins',serif;
 
-}
 #name{
     font-family: 'Poppins',serif;
     font-size: 2rem;
     text-shadow: 4px 4px 4px #aaa;
-    transform: scale(1);
 }
 
 .header{
@@ -28,7 +21,7 @@ body{
     text-transform: uppercase;
 }
 
-.logout , .login:hover{
+.link, .login:hover{
     background-color: transparent;
     color: black;
     border-radius: 2rem;
@@ -37,3 +30,47 @@ body{
     text-transform: uppercase;
 
 }
+
+a{
+    text-decoration: none;
+}
+
+.button{
+    background-color: #60b4df;
+    transition: 0.3s;
+    color: black;
+    border-radius: 2rem;
+    font-size: 0.9em;
+}
+.button:hover{
+    opacity: 1;
+    background-color: #607678;
+}
+
+/* .container{
+    position: relative;
+}
+
+.image{
+    opacity: 1;
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+.title{
+    position: absolute;
+    opacity: 0;
+    transition: .5s ease;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.container:hover .image{
+    opacity: 0.3;
+}
+.container:hover .title{
+    opacity: 1;
+} */

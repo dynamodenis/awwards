@@ -15,6 +15,8 @@ class ProjectInLine(admin.ModelAdmin):
         (None,{'fields':['image']}),
         (None,{'fields':['title']}),
         (None,{'fields':['description']}),
+        (None,{'fields':['link']}),
+        (None,{'fields':['location']}),
     ]
     inlines=[VotesInLine]
 

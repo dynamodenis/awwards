@@ -10,4 +10,12 @@ class UpdateUser(forms.ModelForm):
         
 class UpdateProfile(forms.ModelForm):
     class Meta:
+        model=Profile
         fields=['contact','location','bio','image']
+        
+        
+        
+class PostProject(forms.ModelForm):
+    class Meta:
+        model=Project
+        fields=['image','title','description','link','location']
