@@ -65,24 +65,24 @@ class UserDescription(APIView):
     permission_classes=(IsAdminOrReadOnly,)  
     def get_user(self,pk):
         return get_object_or_404(User,pk=pk)
-    #gets project by id
+    #gets user by id
     def get(self, request, pk ,format=None):
-        user= self.get_project(pk)
-        serializer=ProjectSerailizer(project)
+        user= self.get_user(pk)
+        serializer=UserSerializer(user)
         return Response(serializer.data)
-    #updates a specific project
+    #updates a specific user
     def put(self, request,pk, format=None):
-        project=self.get_project(pk)
-        serializer=ProjectSerailizer(project,request.data)
+        user=self.get_user(pk)
+        serializer=UserSerializer(user,request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    #DELETES A PROJECT    
+    #DELETES A user   
     def delete(self,request,pk,format=None):
-        project=self.get_project(pk)
-        project.delete()
+        user=self.get_user(pk)
+        user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
         
         
