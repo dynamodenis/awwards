@@ -39,6 +39,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'bootstrap4',
     'register.apps.RegisterConfig',
     'project.apps.ProjectConfig',

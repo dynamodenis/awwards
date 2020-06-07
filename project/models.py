@@ -45,6 +45,9 @@ class Votes(models.Model):
     design=models.IntegerField(default=0, validators=[MaxValueValidator(10,message='Range acceptable is 0-10'), MinValueValidator(0)])
     content=models.IntegerField(default=0, validators=[MaxValueValidator(10,message='Range acceptable is 0-10'), MinValueValidator(0)])
     
+    def __str__(self):
+        return self.user.username
+    
     
 class Profile(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)

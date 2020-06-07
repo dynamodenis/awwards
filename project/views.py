@@ -3,8 +3,21 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile,Project
 from .forms import PostProject,UpdateUser,UpdateProfile
 from django.contrib.auth.models import User
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import ProjectSerailizer
 
 # Create your views here.
+#api view
+class ProjectList(APIView):
+    def get(self,response,format=None):
+        projects=Project.objects.all()
+        serializer=ProjectSerailizer(projects,many=True)
+        return Response(serializer.data)
+
+
+
+#Index view
 def index(request):
     projects=Project.objects.order_by('-posted')
     return render(request,'project/index.html',{'projects':projects})
@@ -18,7 +31,9 @@ def profile(request):
 #specific project
 def project(request,project_id):
     project=get_object_or_404(Project,pk=project_id)
-    return render(request, 'project/project.html',{'project':project})
+    votes=project.votes_set.all()
+    print(votes)
+    return render(request, 'project/project.html',{'project':project,'votes':votes})
 
 def new_project(request):
     current_user=request.user

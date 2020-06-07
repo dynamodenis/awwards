@@ -12,6 +12,7 @@ dj-database-url = "*"
 python-decouple = "*"
 pillow = "*"
 django-bootstrap4 = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.6"
