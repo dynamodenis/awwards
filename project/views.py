@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import ProjectSerailizer,UserSerializer
+from rest_framework import status
+from .permission import IsAdminOrReadOnly
 
 # Create your views here.
 #api view
@@ -14,6 +16,17 @@ class ProjectList(APIView):
         projects=Project.objects.all()
         serializer=ProjectSerailizer(projects,many=True)
         return Response(serializer.data)
+    
+    @login_required
+    def post(self,request,format=None):
+        serializer=ProjectSerailizer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    
+        permission_classes=(IsAdminOrReadOnly,)
 
 class UserList(APIView):
     def get(self,response,format=None):

@@ -7,7 +7,7 @@ from django import forms
 class ProjectSerailizer(serializers.ModelSerializer):
     class Meta:
         model=Project
-        fields=['id','title','description','link','posted']
+        fields=['id','title','description','link','image','posted']
         
 class UserSerializer(serializers.ModelSerializer):
     email=forms.EmailField()
