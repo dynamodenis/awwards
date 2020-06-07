@@ -21,6 +21,7 @@ urlpatterns = [
     path('api/users/', views.UserList.as_view()),
     path('api/project/<int:pk>/',views.ProjectDescription.as_view()),
     path('api/user/<int:pk>/',views.UserDescription.as_view()),
+    path('project/<int:project_id>/vote/',views.vote,name='vote')
     
 ]
 

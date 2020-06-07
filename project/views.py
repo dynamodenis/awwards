@@ -8,6 +8,8 @@ from rest_framework.response import Response
 from .serializers import ProjectSerailizer,UserSerializer
 from rest_framework import status
 from .permission import IsAdminOrReadOnly
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 #api view
@@ -125,4 +127,20 @@ def new_project(request):
 def posted_by(request, user_id):
     user=get_object_or_404(User,pk=user_id)
     return render(request,'project/posted_by.html', {'user':user})
+
+
+def vote(request, project_id):
+    project=get_object_or_404(Project, pk=project_id)
+    votes=project.votes_set.all()
+    # for vote in votes:
+    #     usability=vote.usability += request.POST.get('usability')
+    #     print(usability)
+    #     content=vote.content.append(int(request.POST.get('content')))
+    #     print(content)
+    #     design=vote.design.append(int(request.POST.get('design')))
+    #     print(design)
+    
+    return HttpResponseRedirect(reverse('project:project',  args=(project.id,)))
+    
+    
             
