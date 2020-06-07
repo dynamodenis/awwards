@@ -19,6 +19,7 @@ class ProjectList(APIView):
     
     @login_required
     def post(self,request,format=None):
+        permission_classes=(IsAdminOrReadOnly,)
         serializer=ProjectSerailizer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -33,6 +34,19 @@ class UserList(APIView):
         users=User.objects.all()
         serializer=UserSerializer(users,many=True)
         return Response(serializer.data)
+  
+class ProjectDescription(APIView):
+    permission_classes=(IsAdminOrReadOnly,)  
+    def get_project(self,pk):
+        return get_object_or_404(Project,pk=pk)
+    
+    def get(self, request, pk ,format=None):
+        project= self.get_project(pk)
+        serializer=ProjectSerailizer(project)
+        return Response(serializer.data)
+        
+    
+
 
 #Index view
 def index(request):
