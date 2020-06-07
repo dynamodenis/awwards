@@ -5,7 +5,7 @@ from .forms import PostProject,UpdateUser,UpdateProfile
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import ProjectSerailizer
+from .serializers import ProjectSerailizer,UserSerializer
 
 # Create your views here.
 #api view
@@ -15,7 +15,11 @@ class ProjectList(APIView):
         serializer=ProjectSerailizer(projects,many=True)
         return Response(serializer.data)
 
-
+class UserList(APIView):
+    def get(self,response,format=None):
+        users=User.objects.all()
+        serializer=UserSerializer(users,many=True)
+        return Response(serializer.data)
 
 #Index view
 def index(request):

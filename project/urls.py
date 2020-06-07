@@ -17,7 +17,8 @@ urlpatterns = [
     path('new/project/', views.new_project,name='new_project'),
     path('user/<int:user_id>', views.posted_by,name='posted_by'),
     #API PATTERN
-    path('api/project/', views.ProjectList.as_view())
+    path('api/project/', views.ProjectList.as_view()),
+    path('api/users/', views.UserList.as_view())
 ]
 
 if settings.DEBUG:
