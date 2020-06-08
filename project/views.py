@@ -11,6 +11,7 @@ from .permission import IsAdminOrReadOnly
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+import numpy as np
 
 # Create your views here.
 #api view
@@ -104,12 +105,23 @@ def profile(request):
 
 
 #specific project
+@login_required
 def project(request,project_id):
     project=get_object_or_404(Project,pk=project_id)
     votes=Votes()
     votes_list=project.votes_set.all()
-    return render(request, 'project/project.html',{'project':project,'votes':votes,'votes_list':votes_list})
+    for vote in votes_list:
+        vote_mean=[]
+        usability=vote.usability
+        vote_mean.append(usability)
+        content=vote.content
+        vote_mean.append(content)
+        design=vote.design
+        vote_mean.append(design)
+        mean=np.mean(vote_mean)
+    return render(request, 'project/project.html',{'project':project,'votes':votes,'votes_list':votes_list,'mean':mean})
 
+@login_required
 def new_project(request):
     current_user=request.user
     if request.method=='POST':
@@ -125,11 +137,12 @@ def new_project(request):
         
     return render(request,'project/new_project.html',{'form':form})
 
+@login_required
 def posted_by(request, user_id):
     user=get_object_or_404(User,pk=user_id)
     return render(request,'project/posted_by.html', {'user':user})
 
-
+@login_required
 def vote(request, project_id):
     project=get_object_or_404(Project, pk=project_id)
     votes=Votes()

@@ -43,7 +43,7 @@
             {% for vote in votes_list%}
                 <div>
                     <table class="table">
-                        <thead class="thead-dark">
+                        <thead class="thead" style="background-color: #60b4df;">
                         <tr>
                             <th scope="col">User</th>
                             <th scope="col">Usability</th>
@@ -58,7 +58,7 @@
                             <td scope="col">{{vote.usability}}</td>
                             <td scope="col">{{vote.content}}</td>
                             <td scope="col">{{vote.design}}</td>
-                            <td scope="col">Mean</td>
+                            <td scope="col">{{mean}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -67,7 +67,7 @@
         {%else%}
         <div>
             <table class="table">
-                <thead class="thead-dark">
+                <thead class="thead" style="background-color: #60b4df;">
                   <tr>
                     <th scope="col">User</th>
                     <th scope="col">Usability</th>
