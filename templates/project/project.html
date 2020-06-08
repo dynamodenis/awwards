@@ -34,40 +34,63 @@
                   </div>
                   
             </div>
-            <div>
-                <table class="table">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th scope="col">User</th>
-                        <th scope="col">Usability</th>
-                        <th scope="col">Content</th>
-                        <th scope="col">Design</th>
-                        <th scope="col">Mean</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
         </div>
+    </div>
+    <div class="row mb-4">
+    <div class="col-lg-1 col-md-1"></div>
+    <div class="col-lg-9 col-md-9">
+        {%if votes_list%}
+            {% for vote in votes_list%}
+                <div>
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">User</th>
+                            <th scope="col">Usability</th>
+                            <th scope="col">Content</th>
+                            <th scope="col">Design</th>
+                            <th scope="col">Mean</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td scope="col">{{vote.user.username}}</td>
+                            <td scope="col">{{vote.usability}}</td>
+                            <td scope="col">{{vote.content}}</td>
+                            <td scope="col">{{vote.design}}</td>
+                            <td scope="col">Mean</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
+        {%else%}
+        <div>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Usability</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Design</th>
+                    <th scope="col">Mean</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="col">No Votes Yet</td>
+                    <td scope="col">No Votes Yet</td>
+                    <td scope="col">No Votes Yet</td>
+                    <td scope="col">No Votes Yet</td>
+                    <td scope="col">No Votes Yet</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+
+        {% endif %}
+    </div>
+    <div class="col-lg-1 col-md-1"></div>
     </div>
 </div>
 {% endblock %}

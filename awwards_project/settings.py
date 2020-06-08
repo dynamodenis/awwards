@@ -39,6 +39,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'numpy',
     'rest_framework',
     'rest_framework.authtoken',
     'bootstrap4',

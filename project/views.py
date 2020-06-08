@@ -107,8 +107,8 @@ def profile(request):
 def project(request,project_id):
     project=get_object_or_404(Project,pk=project_id)
     votes=Votes()
-    print(votes)
-    return render(request, 'project/project.html',{'project':project,'votes':votes})
+    votes_list=project.votes_set.all()
+    return render(request, 'project/project.html',{'project':project,'votes':votes,'votes_list':votes_list})
 
 def new_project(request):
     current_user=request.user
