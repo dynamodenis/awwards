@@ -181,3 +181,7 @@ def update_settings(request):
         update_user=UpdateUser(instance=request.user)
         update_profile=UpdateProfile(instance=request.user.profile)
     return render(request, 'project/update_profile.html',{'update_user':update_user,'update_profile':update_profile})
+
+#API PAGE
+def api(request):
+    return render(request,'project/api.html')
