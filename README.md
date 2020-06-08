@@ -1,4 +1,4 @@
-# INSTA-POSTER
+# AwwardMe
 
 Developer: Dynamo Denis Mbugua
 
@@ -11,10 +11,7 @@ Location: Nairobi, Kenya
 ---
 ## Description
 
-Living in an age of rapid spread and information, we always want to be part of that and be able to break the information barrier by sharing your pictures of family, friends or even vacation and share it with your friends and followers around you.
-
-
-Instaposter is a platform where a user can be able to post posts, comment and like on them. With other aditional functionalities like following and unfollowing of users and this gives u more control of a your account and the posters you want to view. 
+This an application where developers can be a able to post their projects and other developers can be able to vote and gauge their views on the application.
 
 ---
 ## Technologies used
