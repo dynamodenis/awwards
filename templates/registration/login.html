@@ -18,11 +18,13 @@
             
             {% bootstrap_form form%}
 
-            <div class="form-group">
+            <div class="form-group form-inline small">
               <input type="submit" class="btn btn-primary btn-sm" value="Login">
+              <a class="ml-2" href="{% url 'password_reset' %}">Forgot password?</a>
             </div>
             <div class="small">
               <p class="text-muted">Don't have an account create one? <a href="{% url 'register' %}" class="ml-2">Register</a></p>
+              <p></p>
             </div>
             <input type="hidden" name="next" value="{{next}}">
 
