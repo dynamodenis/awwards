@@ -41,7 +41,7 @@
                             <p class="card-text">About Me: {{user.profile.bio}}</p>
                             {%endif%} 
                 
-                            <a href="#" class="btn btn-success btn-sm"><small>Update Settings</small></a>
+                            <a href="{% url  'project:update_settings' %}" class="btn btn-success btn-sm"><small>Update Settings</small></a>
                         </div>
                     </div>
                 </div>

@@ -27,17 +27,45 @@
                     <div class="card card-body">
                         <form action="{% url 'project:vote' project.id %}" method="POST">
                         {% csrf_token%}
-                            <input type="text" name="usability" id="choice{{forloop.counter}}" value="{{project.votes.usability}}">
-                            <label for="choice{{forloop.counter}}">Usability</label><br>
-                            <input type="text" name="content" id="choice{{forloop.counter}}" value="{{project.votes.content}}">
-                            <label for="choice{{forloop.counter}}">Content</label><br>
-                            <input type="text" name="design" id="choice{{forloop.counter}}" value="{{project.votes.design}}">
-                            <label for="choice{{forloop.counter}}">Design</label><br>
-                            <input type="submit" value="Vote">
+                            {% bootstrap_form votes%}
+                            <input type="submit" value="Vote" class="btn btn-outline-success btn-sm">
                         </form>
                     </div>
                   </div>
                   
+            </div>
+            <div>
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">User</th>
+                        <th scope="col">Usability</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Design</th>
+                        <th scope="col">Mean</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
             </div>
         </div>
     </div>

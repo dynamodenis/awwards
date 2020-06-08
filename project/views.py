@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Project
-from .forms import PostProject,UpdateUser,UpdateProfile
+from .forms import PostProject,UpdateUser,UpdateProfile,Votes
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -10,6 +10,7 @@ from rest_framework import status
 from .permission import IsAdminOrReadOnly
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib import messages
 
 # Create your views here.
 #api view
@@ -105,7 +106,7 @@ def profile(request):
 #specific project
 def project(request,project_id):
     project=get_object_or_404(Project,pk=project_id)
-    votes=project.votes_set.all()
+    votes=Votes()
     print(votes)
     return render(request, 'project/project.html',{'project':project,'votes':votes})
 
@@ -131,16 +132,34 @@ def posted_by(request, user_id):
 
 def vote(request, project_id):
     project=get_object_or_404(Project, pk=project_id)
-    votes=project.votes_set.all()
-    # for vote in votes:
-    #     usability=vote.usability += request.POST.get('usability')
-    #     print(usability)
-    #     content=vote.content.append(int(request.POST.get('content')))
-    #     print(content)
-    #     design=vote.design.append(int(request.POST.get('design')))
-    #     print(design)
+    votes=Votes()
+    votes=Votes(request.POST)
+    if votes.is_valid():
+        vote=votes.save(commit=False)
+        vote.user=request.user
+        vote.project=project
+        vote.save() 
+        messages.success(request,'Votes Successfully submitted')
+        return HttpResponseRedirect(reverse('project:project',  args=(project.id,)))
     
-    return HttpResponseRedirect(reverse('project:project',  args=(project.id,)))
+    else:
+        messages.warning(request,'ERROR! Voting Range is from 0-10')
+        votes=Votes()     
+    return render(request, 'project/project.html',{'project':project,'votes':votes})
+        
     
     
-            
+def update_settings(request):
+    update_user=UpdateUser(request.POST,instance=request.user)
+    update_profile=UpdateProfile(request.POST,request.FILES,instance=request.user.profile)
+    if update_user.is_valid() and update_profile.is_valid():
+        update_user.save()
+        update_profile.save()
+        
+        messages.success(request, 'Profile Updated Successfully')
+        return redirect('project:profile')
+    
+    else:
+        update_user=UpdateUser(instance=request.user)
+        update_profile=UpdateProfile(instance=request.user.profile)
+    return render(request, 'project/update_profile.html',{'update_user':update_user,'update_profile':update_profile})
