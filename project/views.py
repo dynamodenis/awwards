@@ -119,7 +119,12 @@ def project(request,project_id):
         design=vote.design
         vote_mean.append(design)
         mean=np.mean(vote_mean)
-    return render(request, 'project/project.html',{'project':project,'votes':votes,'votes_list':votes_list,'mean':mean})
+        mean=round(mean,2)
+        if mean:
+            return render(request, 'project/project.html',{'project':project,'votes':votes,'votes_list':votes_list,'mean':mean})
+
+        
+    return render(request, 'project/project.html',{'project':project,'votes':votes,'votes_list':votes_list})
 
 @login_required
 def new_project(request):
